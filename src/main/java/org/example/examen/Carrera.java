@@ -51,6 +51,49 @@ public class Carrera {
                 }
             }
         }
+    }
+//Fecha: 18/1/2025
+//CAJÓN ROJO: 100 corredores admitidos, 900 plazas libres.
+//CAJÓN VERDE: 1000 corredores admitidios, 1000 plazas libres.
+//CAJÓN AMARILLO: 1000 corredores admitidos, 1000 plazas libres.
+//CAJÓN BLANCO: 5000 corredores admitidios, 0 plazas libres.
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder("Fecha: ");
+        builder.append(fechaCelebracion.getDayOfMonth()).append('/');
+        builder.append(fechaCelebracion.getMonthValue()).append('/');
+        builder.append(fechaCelebracion.getYear()).append('\n');
+        for (Cajon cajon : cajones){
+            String linea = String.format("CAJÓN %s: %d corredores admitidios, %d plazas libres%n",
+                    cajon.getColorCajon(), cajon.getAtletas().size(),
+                    cajon.getColorCajon().getCapacidad() - cajon.getAtletas().size());
+            builder.append(linea);
+        }
+        return builder.toString();
+    }
+
+    public static void main(String[] args) {
+        //System.out.println(ColorCajon.ROJO);
+        Carrera carrera = new Carrera(LocalDate.of(2025, 1, 18));
+        System.out.println(carrera);
+        Atleta atleta1 = new Atleta(
+                "Juan García", "12345678a", true, 50.3);
+        Atleta atleta2 = new Atleta(
+                "Juani García", "12345678b", false, 122.2);
+        Atleta atleta3 = new Atleta(
+                "Esteban García", "12345678d", true, 35);
+        Atleta atleta4 = new Atleta(
+                "Marisa García", "12345678c", false, 52.1);
+        carrera.addCorredor(atleta1); carrera.addCorredor(atleta2);
+        carrera.addCorredor(atleta3); carrera.addCorredor(atleta4);
+        System.out.println(carrera);
 
     }
 }
+
+
+
+
+
+
+
